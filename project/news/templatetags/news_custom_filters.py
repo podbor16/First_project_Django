@@ -11,9 +11,10 @@ def censor_words(value, args='урюпа,фофанъ,фуфлыга,хабал�
 	if not isinstance(value, str):
 		raise TemplateSyntaxError("Filter 'censor_words' should only be applied to string variables.")
 	# Разделяем входную строку по пробелам и преобразуем в множество для уникальности
-	value_words = set(value.split())
+	value_words = value.split()
 	# Преобразуем аргументы в множество для уникальности
-	args_words = set(args.split(','))
+	#args_words = set(args.split(','))
+	args_words = [word.lower() for word in args.split(',')]
 
 	# Создаем новый список слов, где каждое слово из args заменяется на '*'
 	censored_words = [
@@ -23,3 +24,4 @@ def censor_words(value, args='урюпа,фофанъ,фуфлыга,хабал�
 
 	# Возвращаем результат в виде строки
 	return ' '.join(censored_words)
+	#return str(censored_words)
