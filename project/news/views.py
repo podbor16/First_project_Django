@@ -1,10 +1,10 @@
-from django.shortcuts import render
 
 from datetime import datetime
 # Импортируем класс, который говорит нам о том,
 # что в этом представлении мы будем выводить список объектов из БД
 from django.views.generic import ListView, DetailView
 from .models import Post
+from .filters import PostFilter
 
 
 class NewsList(ListView):
@@ -18,6 +18,14 @@ class NewsList(ListView):
     # Это имя списка, в котором будут лежать все объекты.
     # Его надо указать, чтобы обратиться к списку объектов в html-шаблоне.
     context_object_name = 'news'
+
+    # Указываем количество записей на странице
+    paginate_by = 2
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        self.filterset = PostFilter(self.request.GET, queryset)
+        return self.filterset.qs
 
     # Метод get_context_data позволяет нам изменить набор данных,
     # который будет передан в шаблон.
