@@ -1,10 +1,14 @@
 
 from datetime import datetime
+
 # Импортируем класс, который говорит нам о том,
 # что в этом представлении мы будем выводить список объектов из БД
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 from .models import Post
 from .filters import PostFilter
+from django_filters.views import FilterView
+from .forms import PostForm
+from django.urls import reverse_lazy
 
 
 class NewsList(ListView):
@@ -40,7 +44,17 @@ class NewsList(ListView):
         # Добавим ещё одну пустую переменную,
         # чтобы на её примере рассмотреть работу ещё одного фильтра.
         context['next_sale'] = "Распродажа в среду"
+        context['filterset'] = self.filterset
         return context
+
+
+class NewsSearch(FilterView):
+    model = Post
+    ordering = 'created_at'
+    filterset_class = PostFilter
+    template_name = 'news_search.html'
+    context_object_name = 'news'
+    paginate_by = 2
 
 
 class NewDetail(DetailView):
@@ -50,3 +64,21 @@ class NewDetail(DetailView):
     template_name = 'new.html'
     # Название объекта, в котором будет выбранный пользователем продукт
     context_object_name = 'new'
+
+
+class NewsCreate(CreateView):
+    form_class = PostForm
+    model = Post
+    template_name = 'news_edit.html'
+
+
+class NewsUpdate(UpdateView):
+    form_class = PostForm
+    model = Post
+    template_name = 'news_edit.html'
+
+
+class NewsDelete(DeleteView):
+    model = Post
+    template_name = 'news_delete.html'
+    success_url = reverse_lazy('post_list')
