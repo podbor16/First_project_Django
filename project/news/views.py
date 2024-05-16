@@ -73,7 +73,7 @@ class NewsCreate(CreateView):
 
     def form_valid(self, form):
         news = form.save(commit=False)
-        NewsForm.post_type = 'news'
+        news.post_type = 'news'
         return super().form_valid(form)
 
 
@@ -84,7 +84,7 @@ class ArticleCreate(CreateView):
 
     def form_valid(self, form):
         article = form.save(commit=False)
-        ArticleForm.post_type = 'article'
+        article.post_type = 'article'
         return super().form_valid(form)
 
 
