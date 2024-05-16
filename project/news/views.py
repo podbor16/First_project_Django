@@ -24,7 +24,7 @@ class PostsList(ListView):
     context_object_name = 'news'
 
     # Указываем количество записей на странице
-    paginate_by = 2
+    paginate_by = 10
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -54,7 +54,7 @@ class PostsSearch(FilterView):
     filterset_class = PostFilter
     template_name = 'posts_search.html'
     context_object_name = 'news'
-    paginate_by = 2
+    paginate_by = 10
 
 
 class PostDetail(DetailView):
