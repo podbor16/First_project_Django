@@ -8,7 +8,7 @@ class PostFilter(FilterSet):
 		field_name='created_at',
 		widget=forms.DateInput(attrs={'type': 'date'}),
 		lookup_expr='date__gte',
-		label='Показ новостей после выбранного дня',
+		label='Показ постов после выбранного дня',
 	)
 
 	category = ModelChoiceFilter(
@@ -21,7 +21,7 @@ class PostFilter(FilterSet):
 	title = CharFilter(
 		field_name='title',
 		lookup_expr='icontains',
-		label='Поиск по Заголовку',
+		label='Поиск по заголовку',
 	)
 
 	class Meta:

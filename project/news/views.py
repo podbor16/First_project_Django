@@ -7,18 +7,18 @@ from django.views.generic import ListView, DetailView, UpdateView, CreateView, D
 from .models import Post
 from .filters import PostFilter
 from django_filters.views import FilterView
-from .forms import PostForm
+from .forms import NewsForm, ArticleForm
 from django.urls import reverse_lazy
 
 
-class NewsList(ListView):
+class PostsList(ListView):
     # Указываем модель, объекты которой мы будем выводить
     model = Post
     # Поле, которое будет использоваться для сортировки объектов
     ordering = 'created_at'
     # Указываем имя шаблона, в котором будут все инструкции о том,
     # как именно пользователю должны быть показаны наши объекты
-    template_name = 'news.html'
+    template_name = 'posts.html'
     # Это имя списка, в котором будут лежать все объекты.
     # Его надо указать, чтобы обратиться к списку объектов в html-шаблоне.
     context_object_name = 'news'
@@ -48,37 +48,65 @@ class NewsList(ListView):
         return context
 
 
-class NewsSearch(FilterView):
+class PostsSearch(FilterView):
     model = Post
     ordering = 'created_at'
     filterset_class = PostFilter
-    template_name = 'news_search.html'
+    template_name = 'posts_search.html'
     context_object_name = 'news'
     paginate_by = 2
 
 
-class NewDetail(DetailView):
+class PostDetail(DetailView):
     # Модель всё та же, но мы хотим получать информацию по отдельному товару
     model = Post
     # Используем другой шаблон — product.html
-    template_name = 'new.html'
+    template_name = 'post.html'
     # Название объекта, в котором будет выбранный пользователем продукт
     context_object_name = 'new'
 
 
 class NewsCreate(CreateView):
-    form_class = PostForm
+    form_class = NewsForm
     model = Post
-    template_name = 'news_edit.html'
+    template_name = 'news_create.html'
+
+    def form_valid(self, form):
+        news = form.save(commit=False)
+        NewsForm.post_type = 'news'
+        return super().form_valid(form)
+
+
+class ArticleCreate(CreateView):
+    form_class = ArticleForm
+    model = Post
+    template_name = 'article_create.html'
+
+    def form_valid(self, form):
+        article = form.save(commit=False)
+        ArticleForm.post_type = 'article'
+        return super().form_valid(form)
 
 
 class NewsUpdate(UpdateView):
-    form_class = PostForm
+    form_class = NewsForm
     model = Post
     template_name = 'news_edit.html'
+
+
+class ArticleUpdate(UpdateView):
+    form_class = ArticleForm
+    model = Post
+    template_name = 'article_edit.html'
 
 
 class NewsDelete(DeleteView):
     model = Post
     template_name = 'news_delete.html'
+    success_url = reverse_lazy('post_list')
+
+
+class PostDelete(DeleteView):
+    model = Post
+    template_name = 'article_delete.html'
     success_url = reverse_lazy('post_list')
