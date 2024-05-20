@@ -1,15 +1,14 @@
-
 from datetime import datetime
-
 # Импортируем класс, который говорит нам о том,
 # что в этом представлении мы будем выводить список объектов из БД
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
-from .models import Post
-from .filters import PostFilter
 from django_filters.views import FilterView
-from .forms import NewsForm, ArticleForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import PermissionRequiredMixin
+from .models import Post
+from .filters import PostFilter
+from .forms import NewsForm, ArticleForm
 
 
 @login_required
@@ -72,7 +71,8 @@ class PostDetail(DetailView):
     context_object_name = 'new'
 
 
-class NewsCreate(CreateView):
+class NewsCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.news_create',)
     form_class = NewsForm
     model = Post
     template_name = 'news_create.html'
@@ -83,7 +83,8 @@ class NewsCreate(CreateView):
         return super().form_valid(form)
 
 
-class ArticleCreate(CreateView):
+class ArticleCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.article_create',)
     form_class = ArticleForm
     model = Post
     template_name = 'article_create.html'
@@ -94,25 +95,29 @@ class ArticleCreate(CreateView):
         return super().form_valid(form)
 
 
-class NewsUpdate(UpdateView):
+class NewsUpdate(PermissionRequiredMixin,UpdateView):
+    permission_required = ('news.news_update',)
     form_class = NewsForm
     model = Post
     template_name = 'news_edit.html'
 
 
-class ArticleUpdate(UpdateView):
+class ArticleUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = ('news.article_update',)
     form_class = ArticleForm
     model = Post
     template_name = 'article_edit.html'
 
 
-class NewsDelete(DeleteView):
+class NewsDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('news.news_delete',)
     model = Post
     template_name = 'news_delete.html'
     success_url = reverse_lazy('post_list')
 
 
-class PostDelete(DeleteView):
+class ArticleDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('news.article_delete',)
     model = Post
     template_name = 'article_delete.html'
     success_url = reverse_lazy('post_list')

@@ -2,6 +2,7 @@
 {% extends 'flatpages/default.html' %}
 
 {% load news_custom_filters %}
+{% load news_custom_tags %}
 
 <!-- Название у нас будет products -->
 {% block title %}
@@ -28,6 +29,12 @@
        <!--<input type="submit" value="Найти" />-->
    </form>
     <hr>
+
+    {# Теперь будем проверять не request.user.is_authenticated, а конкретные права #}
+    {% if perms.news.add_post %}
+        <a href="{% url 'news_create' %}">Добавить новость</a>
+        <a href="{% url 'article_create' %}">Добавить статью</a>
+    {% endif %}
     <!-- Выводим товары, только если они есть с помощью тега if -->
     {% if news %}
         <table>
@@ -35,12 +42,34 @@
                <td>Заголовок</td>
                <td>Дата публикации</td>
                <td>Текст</td>
+
+               {# Условие получается составным. #}
+               {% if perms.news.change_post or perms.news.delete_post %}
+               <td>Действия</td>
+               {% endif %}
            </tr>
            {% for new in news %}
            <tr>
                <td>{{ new.title|censor_words:"урюпа,фофанъ,фуфлыга,хабалъ" }}</td>
                <td>{{ new.created_at|date:'d M Y' }}</td>
                <td>{{ new.text|truncatewords:20|censor_words:"урюпа,фофанъ,фуфлыга,хабалъ" }}</td>
+               <td>
+                    {# А здесь доступ для каждой ссылки теперь будем проверять отдельно #}
+                    {% if perms.news.change_post %}
+                        {% if new.post_type == 'news' %}
+                            <a href="{% url 'news_update' pk=new.id %}">Изменить новость</a>
+                        {% elif new.post_type == 'article' %}
+                            <a href="{% url 'article_update' pk=new.id %}">Изменить статью</a>
+                        {% endif %}
+                    {% endif %}
+                    {% if perms.news.delete_post %}
+                        {% if new.post_type == 'news' %}
+                            <a href="{% url 'news_delete' pk=new.id %}">Удалить новость</a>
+                        {% elif new.post_type == 'article' %}
+                            <a href="{% url 'news_delete' pk=new.id %}">Удалить статью</a>
+                        {% endif %}
+                    {% endif %}
+               </td>
            </tr>
            {% endfor %}
        </table>

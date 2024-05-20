@@ -2,6 +2,7 @@ from allauth.account.forms import SignupForm
 from django.contrib.auth.models import Group
 
 
+# Класс для сохранения зарегистрированных пользователей в группу common_users
 class CustomSignupForm(SignupForm):
     def save(self, request):
         user = super().save(request)
