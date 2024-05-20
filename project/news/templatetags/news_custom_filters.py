@@ -1,6 +1,5 @@
 from django import template
-from django.utils.safestring import mark_safe
-from django.core.exceptions import TemplateSyntaxError
+from django.template.base import TemplateSyntaxError
 
 register = template.Library()
 

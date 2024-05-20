@@ -9,6 +9,12 @@ from .filters import PostFilter
 from django_filters.views import FilterView
 from .forms import NewsForm, ArticleForm
 from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+
+
+@login_required
+def show_protected_page(request):
+    pass
 
 
 class PostsList(ListView):
