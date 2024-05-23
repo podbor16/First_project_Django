@@ -6,12 +6,12 @@
 
 <!-- Название у нас будет products -->
 {% block title %}
-Новости
+Публикации
 {% endblock title %}
 
 <!-- В контенте на странице мы выводим все товары -->
 {% block content %}
-    <h1>Все новости</h1>
+    <h1>Все публикации</h1>
     <!-- Используем переданную из представления переменную time_now
     и применяем к ней фильтр date. По назначению этот фильтр очень похож
     метод strftime у объекта datetime в Python — вывод времени
@@ -41,7 +41,8 @@
            <tr>
                <td>Заголовок</td>
                <td>Дата публикации</td>
-               <td>Текст</td>
+               <td>Начало новости</td>
+               <td>Подробнее</td>
 
                {# Условие получается составным. #}
                {% if perms.news.change_post or perms.news.delete_post %}
@@ -52,21 +53,28 @@
            <tr>
                <td>{{ new.title|censor_words:"урюпа,фофанъ,фуфлыга,хабалъ" }}</td>
                <td>{{ new.created_at|date:'d M Y' }}</td>
-               <td>{{ new.text|truncatewords:20|censor_words:"урюпа,фофанъ,фуфлыга,хабалъ" }}</td>
+               <td>{{ new.text|truncatewords:5|censor_words:"урюпа,фофанъ,фуфлыга,хабалъ" }}</td>
+               <td>
+                   <a href="{% url 'post_detail' pk=new.id %}">>>></a>
+               </td>
                <td>
                     {# А здесь доступ для каждой ссылки теперь будем проверять отдельно #}
                     {% if perms.news.change_post %}
-                        {% if new.post_type == 'news' %}
-                            <a href="{% url 'news_update' pk=new.id %}">Изменить новость</a>
-                        {% elif new.post_type == 'article' %}
-                            <a href="{% url 'article_update' pk=new.id %}">Изменить статью</a>
+                        {% if user.id == new.author.id %}
+                            {% if new.post_type == 'news' %}
+                                <a href="{% url 'news_update' pk=new.id %}">Изменить новость</a>
+                            {% elif new.post_type == 'article' %}
+                                <a href="{% url 'article_update' pk=new.id %}">Изменить статью</a>
+                            {% endif %}
                         {% endif %}
                     {% endif %}
                     {% if perms.news.delete_post %}
-                        {% if new.post_type == 'news' %}
-                            <a href="{% url 'news_delete' pk=new.id %}">Удалить новость</a>
-                        {% elif new.post_type == 'article' %}
-                            <a href="{% url 'news_delete' pk=new.id %}">Удалить статью</a>
+                        {% if user.id == new.author.id %}
+                            {% if new.post_type == 'news' %}
+                                <a href="{% url 'news_delete' pk=new.id %}">Удалить новость</a>
+                            {% elif new.post_type == 'article' %}
+                                <a href="{% url 'news_delete' pk=new.id %}">Удалить статью</a>
+                            {% endif %}
                         {% endif %}
                     {% endif %}
                </td>

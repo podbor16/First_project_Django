@@ -1,6 +1,7 @@
 from django.urls import path
+
 # Импортируем созданное нами представление
-from .views import(
+from .views import (
    PostsList, PostDetail, NewsCreate, NewsUpdate, NewsDelete, PostsSearch, ArticleCreate, ArticleUpdate
 )
 

@@ -46,8 +46,8 @@ class Post(models.Model):
         self.rating += 1
         self.save()
 
-    def dislike(self):
-        self.rating -= 1
+    def dislike(self, rating):
+        self.rating -= 1 if rating > 0 else self.rating
         self.save()
 
     def get_absolute_url(self):
@@ -70,6 +70,6 @@ class Comment(models.Model):
         self.rating += 1
         self.save()
 
-    def dislike(self):
-        self.rating -= 1
+    def dislike(self, rating):
+        self.rating -= 1 if rating > 0 else self.rating
         self.save()
