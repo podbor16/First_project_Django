@@ -43,5 +43,5 @@ class ArticleForm(forms.ModelForm):
 		text = cleaned_data.get('text')
 		title = cleaned_data.get('title')
 		if title == text:
-			raise ValidationError('Текс должно отличаться от заголовка')
+			raise ValidationError('Текст должен отличаться от заголовка')
 		return cleaned_data
