@@ -167,7 +167,8 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 # Возможные значения: 'mandatory', 'optional', 'none'
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
 ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
 
@@ -180,7 +181,15 @@ EMAIL_HOST_PASSWORD = "kfscmflkojebselo"
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
+SERVER_EMAIL = "podbor250718@yandex.ru"
+MANAGERS = (
+    ('Matvey', 'podbor250718@yandex.ru'),
+    ('Danil', 'denowload@yandex.ru'),
+)
+
+ADMINS = (
+    ('Matvey', 'podbor250718@yandex.ru'),
+)
+
 DEFAULT_FROM_EMAIL = "podbor250718@yandex.ru"
-
-
-
+EMAIL_SUBJECT_PREFIX = None

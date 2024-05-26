@@ -1,7 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Include" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/PyJWT-2.8.0.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/allauth" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/certifi" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/certifi-2024.2.2.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/cffi" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/cffi-1.16.0.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/charset_normalizer" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/charset_normalizer-3.3.2.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/cryptography" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/cryptography-42.0.7.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/defusedxml" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/defusedxml-0.7.1.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/django_allauth-0.54.0.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/django_filter-24.2.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/django_filters" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/idna" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/idna-3.7.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/jwt" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/oauthlib" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/oauthlib-3.2.2.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/openid" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/pycparser" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/pycparser-2.22.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/python3_openid-3.2.0.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/requests" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/requests-2.31.0.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/requests_oauthlib" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/requests_oauthlib-2.0.0.dist-info" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/urllib3" />
+      <excludeFolder url="file://$MODULE_DIR$/venv/Lib/site-packages/urllib3-2.2.1.dist-info" />
+    </content>
     <orderEntry type="jdk" jdkName="Python 3.10" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
