@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_protect
 from django.db.models import Exists, OuterRef
 
 
-from .models import Post, Category, Subscription
+from .models import Post, Category, Subscriber
 from .filters import PostFilter
 from .forms import NewsForm, ArticleForm
 
@@ -138,13 +138,13 @@ def subscriptions(request):
 
         category = Category.objects.get(id=category_id)
         if action == 'subscribe':
-            Subscription.objects.get_or_create(user=request.user, category=category)
+            Subscriber.objects.get_or_create(user=request.user, category=category)
         elif action == 'unsubscribe':
-            Subscription.objects.filter(user=request.user, category=category).delete()
+            Subscriber.objects.filter(user=request.user, category=category).delete()
 
     categories_with_subscriptions = Category.objects.annotate(
         user_subscribed=Exists(
-            Subscription.objects.filter(user=request.user, category=OuterRef('pk'))
+            Subscriber.objects.filter(user=request.user, category=OuterRef('pk'))
         )
     ).order_by('name')
 

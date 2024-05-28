@@ -81,16 +81,16 @@ class Comment(models.Model):
         self.save()
 
 
-class Subscription(models.Model):
+class Subscriber(models.Model):
     user = models.ForeignKey(
         to=User,
         on_delete=models.CASCADE,
-        related_name='subscriptions',
+        related_name='subscriber',
     )
     category = models.ForeignKey(
         to='Category',
         on_delete=models.CASCADE,
-        related_name='subscriptions',
+        related_name='subscriber',
     )
 
     def __str__(self):
