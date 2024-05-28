@@ -43,6 +43,7 @@
                <td>Дата публикации</td>
                <td>Начало новости</td>
                <td>Подробнее</td>
+               <td>Категория</td>
 
                {# Условие получается составным. #}
                {% if perms.news.change_post or perms.news.delete_post %}
@@ -57,6 +58,7 @@
                <td>
                    <a href="{% url 'post_detail' pk=new.id %}">>>></a>
                </td>
+               <td>{{ new.category.name }}</td>
                <td>
                     {# А здесь доступ для каждой ссылки теперь будем проверять отдельно #}
                     {% if perms.news.change_post %}

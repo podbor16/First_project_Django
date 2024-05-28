@@ -34,7 +34,7 @@ class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     post_type = models.CharField(max_length=10, choices=TYPE_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
-    categories = models.ManyToManyField(Category, through='PostCategory')
+    category = models.ManyToManyField(Category, through='PostCategory')
     title = models.CharField(max_length=200)
     text = models.TextField()
     rating = models.IntegerField(default=0)
@@ -50,6 +50,9 @@ class Post(models.Model):
         self.rating -= 1 if rating > 0 else self.rating
         self.save()
 
+    def __str__(self):
+        return self.title
+
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
 
@@ -57,6 +60,9 @@ class Post(models.Model):
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.post.title}: {self.category.name}'
 
 
 class Comment(models.Model):
@@ -73,3 +79,19 @@ class Comment(models.Model):
     def dislike(self, rating):
         self.rating -= 1 if rating > 0 else self.rating
         self.save()
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        related_name='subscriptions',
+    )
+    category = models.ForeignKey(
+        to='Category',
+        on_delete=models.CASCADE,
+        related_name='subscriptions',
+    )
+
+    def __str__(self):
+        return f'{self.user.username} - {self.category.name}'

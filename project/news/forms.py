@@ -10,7 +10,7 @@ class NewsForm(forms.ModelForm):
 		model = Post
 		fields = [
 			'author',
-			'categories',
+			'category',
 			'title',
 			'text',
 			'rating'
@@ -21,7 +21,7 @@ class NewsForm(forms.ModelForm):
 		text = cleaned_data.get('text')
 		title = cleaned_data.get('title')
 		if title == text:
-			raise ValidationError('Текст должно отличаться от заголовка')
+			raise ValidationError('Текст должен отличаться от заголовка')
 		return cleaned_data
 
 
@@ -32,7 +32,7 @@ class ArticleForm(forms.ModelForm):
 		model = Post
 		fields = [
 			'author',
-			'categories',
+			'category',
 			'title',
 			'text',
 			'rating'

@@ -57,6 +57,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
+
+    'django_apscheduler',
 ]
 
 SITE_ID = 1
@@ -73,7 +75,7 @@ MIDDLEWARE = [
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 
     # Add the account middleware:
-    'allauth.account.middleware.AccountMiddleware',
+    #'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -86,12 +88,10 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                # `allauth` обязательно нужен этот процессор
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
-                # `allauth` обязательно нужен этот процессор
-                'django.template.context_processors.request',
             ],
         },
     },
@@ -168,28 +168,27 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 # Возможные значения: 'mandatory', 'optional', 'none'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
 ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
 
-# В данный момент установлено значение по умолчанию, так что эта строчка необязательна
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
-EMAIL_HOST_USER = "podbor250718@yandex.ru"
-EMAIL_HOST_PASSWORD = "kfscmflkojebselo"
+EMAIL_HOST_USER = "django-example@yandex.ru"
+EMAIL_HOST_PASSWORD = "qisshfzmajeeilza"
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
-SERVER_EMAIL = "podbor250718@yandex.ru"
+DEFAULT_FROM_EMAIL = "django-example@yandex.ru"
+SERVER_EMAIL = "django-example@yandex.ru"
+
 MANAGERS = (
     ('Matvey', 'podbor250718@yandex.ru'),
-    ('Danil', 'denowload@yandex.ru'),
 )
 
 ADMINS = (
     ('Matvey', 'podbor250718@yandex.ru'),
 )
 
-DEFAULT_FROM_EMAIL = "podbor250718@yandex.ru"
-EMAIL_SUBJECT_PREFIX = None
+
+EMAIL_SUBJECT_PREFIX = ['example']

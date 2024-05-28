@@ -16,3 +16,7 @@ django-allauth~=0.63.1
 certifi~=2023.11.17
 urllib3~=2.1.0
 idna~=3.6
+pytz~=2024.1
+tzlocal~=5.2
+six~=1.16.0
+APScheduler~=3.10.4
