@@ -9,6 +9,7 @@ from django.core.management.base import BaseCommand
 from django_apscheduler import util
 from django_apscheduler.jobstores import DjangoJobStore
 from django_apscheduler.models import DjangoJobExecution
+from django.template.defaultfilters import truncatewords
 
 from news.models import Post, Category, Subscriber
 
@@ -26,20 +27,21 @@ def send_weekly_post_email():
         posts_in_category = new_posts.filter(category=category)
 
         if posts_in_category.exists():
-            post_links = '\n'.join([f"{post.title} - {settings.SITE_URL}"
-                                    f"{post.get_absolute_url}" for post in posts_in_category])
+            post_links = '\n'.join([f"Заголовок: {post.title} \nПревью: {truncatewords(post.text, 5)}..."
+                                    f"\n{settings.SITE_URL}{post.get_absolute_url()}" for post in posts_in_category])
             send_mail(
                 f"Новые публикации в категории {category.name}",
-                post_links,
+                f'Привет, {user.username}! \n\nЗа последнюю неделю появились'
+                f' новые публикации в категории "{category.name}":\n\n {post_links}\n\nПриятного чтения!',
                 settings.DEFAULT_FROM_EMAIL,
-                [subscriber.email],
+                [user.email],
             )
         else:
             send_mail(
                 f"Новых публикаций в категории {category.name} нет",
                 "Новых публикаций нет",
                 settings.DEFAULT_FROM_EMAIL,
-                [subscriber.email],
+                [user.email],
             )
 
 
