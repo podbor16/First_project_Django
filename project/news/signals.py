@@ -15,7 +15,7 @@ def notify_subscribers(instance, **kwargs):
             subscriptions__category__in=categories
         ).values_list('email', flat=True)
 
-        subject = f'Новая публикация в категориях {", ".join(category.__str__() for category in categories)}'
+        subject = f'Новые публикации в категориях {", ".join(category.__str__() for category in categories)}'
 
         text_content = (
             f'Заголовок: {instance.title}\n'
