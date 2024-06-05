@@ -12,6 +12,9 @@ app.autodiscover_tasks()
 app.conf.beat_schedule = {
     'print_mondays_8am': {
         'task': 'news.tasks.new_weekly_posts',
-        'schedule': crontab(day_of_week='wednesday', hour=11, minute=10),
+        'schedule': crontab(day_of_week='wednesday', hour=8, minute=0),
+        'args': ()
     },
 }
+
+app.conf.timezone = 'UTC'

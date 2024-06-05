@@ -19,12 +19,12 @@ def after_post_create_task(pk):
 	subject = f'Новые публикации в категориях {", ".join(category.__str__() for category in categories)}'
 
 	text_content = (
-		f'Заголовок: {post.title}\n'
+		f'\n\nЗаголовок: {post.title}\n'
 		f'Краткое содержание: {truncatewords(post.text, 5)}\n\n'
 		f'Ссылка на товар: http://127.0.0.1:8000{post.get_absolute_url()}'
 	)
 	html_content = (
-		f'Заголовок: {post.title}<br>'
+		f'\n\nЗаголовок: {post.title}<br>'
 		f'Краткое содержание: {truncatewords(post.text, 5)}<br><br>'
 		f'<a href="http://127.0.0.1:8000{post.get_absolute_url()}">'
 		f'Ссылка на товар</a>'
