@@ -76,8 +76,7 @@ MIDDLEWARE = [
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 
     # Add the account middleware:
-
-    'allauth.account.middleware.AccountMiddleware',
+    #'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
