@@ -12,7 +12,7 @@ from django_apscheduler.models import DjangoJobExecution
 from django.template.defaultfilters import truncatewords
 
 from news.models import Post, Category, Subscriber
-
+''''
 logger = logging.getLogger(__name__)
 
 
@@ -43,6 +43,7 @@ def send_weekly_post_email():
                 settings.DEFAULT_FROM_EMAIL,
                 [user.email],
             )
+'''
 
 
 @util.close_old_connections
@@ -50,7 +51,7 @@ def delete_old_job_executions(max_age=604_800):
     """Удаление старых записей о выполнении задач"""
     DjangoJobExecution.objects.delete_old_job_executions(max_age)
 
-
+'''
 class Command(BaseCommand):
     help = "Runs APScheduler."
 
@@ -85,3 +86,4 @@ class Command(BaseCommand):
             logger.info("Stopping scheduler...")
             scheduler.shutdown()
             logger.info("Scheduler shut down successfully!")
+'''
