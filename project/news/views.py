@@ -10,6 +10,8 @@ from django.shortcuts import render
 
 from django.views.decorators.csrf import csrf_protect
 from django.db.models import Exists, OuterRef
+# импортируем наш кэш
+from django.core.cache import cache
 
 
 from .models import Post, Category, Subscriber
@@ -107,12 +109,36 @@ class NewsUpdate(PermissionRequiredMixin, UpdateView):
     model = Post
     template_name = 'news_edit.html'
 
+    # Переопределяем метод получения объекта
+    def get_object(self, *args, **kwargs):
+        # Кэш очень похож на словарь, и метод get действует так же.
+        # Он забирает значение по ключу, если его нет, то забирает None
+        obj = cache.get(f'post-{self.kwargs["pk"]}', None)
+
+        # Если объекта нет в кэше, то получаем его и записываем в кэш
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'post-{self.kwargs["pk"]}', obj)
+            return obj
+
 
 class ArticleUpdate(PermissionRequiredMixin, UpdateView):
     permission_required = ('news.article_update',)
     form_class = ArticleForm
     model = Post
     template_name = 'article_edit.html'
+
+    # Переопределяем метод получения объекта
+    def get_object(self, *args, **kwargs):
+        # Кэш очень похож на словарь, и метод get действует так же.
+        # Он забирает значение по ключу, если его нет, то забирает None
+        obj = cache.get(f'post-{self.kwargs["pk"]}', None)
+
+        # Если объекта нет в кэше, то получаем его и записываем в кэш
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'post-{self.kwargs["pk"]}', obj)
+            return obj
 
 
 class NewsDelete(PermissionRequiredMixin, DeleteView):

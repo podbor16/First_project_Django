@@ -24,6 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
     path('accounts/', include('allauth.urls')),
     path('pages/', include('django.contrib.flatpages.urls')),
-    #path('products/', include('simpleapp.urls')),
     path('posts/', include('news.urls')),
 ]

@@ -1,4 +1,6 @@
 from django.urls import path
+from django.views.decorators.cache import cache_page
+
 
 # Импортируем созданное нами представление
 from .views import (
@@ -14,17 +16,17 @@ urlpatterns = [
    # Т.к. наше объявленное представление является классом,
    # а Django ожидает функцию, нам надо представить этот класс в виде view.
    # Для этого вызываем метод as_view.
-   path('', PostsList.as_view(), name='post_list'),
+   path('', cache_page(60)(PostsList.as_view()), name='post_list'),
 
    # pk — это первичный ключ товара, который будет выводиться у нас в шаблон
    # int — указывает на то, что принимаются только целочисленные значения
-   path('<int:pk>', PostDetail.as_view(), name='post_detail'),
-   path('news/create/', NewsCreate.as_view(), name='news_create'),
+   path('<int:pk>', cache_page(300)(PostDetail.as_view()), name='post_detail'),
+   path('news/create/', cache_page(300)(NewsCreate.as_view()), name='news_create'),
    path('news/<int:pk>/edit/', NewsUpdate.as_view(), name='news_update'),
-   path('news/<int:pk>/delete/', NewsDelete.as_view(), name='news_delete'),
+   path('news/<int:pk>/delete/', cache_page(300)(NewsDelete.as_view()), name='news_delete'),
    path('search/', PostsSearch.as_view(), name='news_search'),
-   path('article/create/', ArticleCreate.as_view(), name='article_create'),
+   path('article/create/',cache_page(300)(ArticleCreate.as_view()), name='article_create'),
    path('article/<int:pk>/edit/', ArticleUpdate.as_view(), name='article_update'),
-   path('article/<int:pk>/delete/', ArticleUpdate.as_view(), name='article_delete'),
+   path('article/<int:pk>/delete/', cache_page(300)(ArticleUpdate.as_view()), name='article_delete'),
    path('subscriptions/', subscriptions, name='posts_subscriptions'),
 ]
