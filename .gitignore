@@ -1,3 +1,4 @@
+project/cache_files
 venv
 project/db.sqlite3
 .idea

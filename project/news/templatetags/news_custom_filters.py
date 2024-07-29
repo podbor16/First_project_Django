@@ -15,9 +15,9 @@ def censor_words(value, args='урюпа,фофанъ,фуфлыга,хабал�
 	#args_words = set(args.split(','))
 	args_words = [word.lower() for word in args.split(',')]
 
-	# Создаем новый список слов, где каждое слово из args заменяется на '*'
+	# Создаем новый список слов, где каждое слово из args заменяется на '*', кроме 1 и последней буквы
 	censored_words = [
-		word if word.lower() not in args_words else word[0] + '*' * (len(word) - 1)
+		word if word.lower() not in args_words else word[0] + '*' * (len(word) - 2) + word[-1]
 		for word in value_words
 	]
 
