@@ -1,11 +1,13 @@
-<!DOCTYPE html>
+{% load i18n %}
+
+<!--<!DOCTYPE html>-->
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Первый проект Django</title>
+        <title>{% trans "Первый проект Django" %}</title>
         <!--link rel="icon" type="image/x-icon" href="assets/favicon.ico" /-->
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -22,23 +24,41 @@
         {% cache 100 mainNav %}
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-8 px-lg-5">
-                <a class="navbar-brand" href="/admin">Админка</a>
-                <a class="navbar-brand" href="/accounts/login">Вход</a>
-                <a class="navbar-brand" href="/accounts/signup">Регистрация</a>
-                <a class="navbar-brand" href="/accounts/logout">Выход</a>
+                <li class="nav-item">
+                    <form action="{% url 'set_language' %}" method="POST"> {% csrf_token %} <!-- Не забываем по csrf_token для POST запросов -->
+                    <input type="hidden" name="next" value="{{ redirect_to }}">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    <select name="language" id="">
+                    {% get_available_languages as LANGUAGES %} <!-- получаем языки -->
+                    {% get_language_info_list for LANGUAGES as languages %} <!-- Помещаем их в список languages -->
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% for language in languages %} <!-- Итерируясь по списку, выводим их название на языке пользователя и код -->
+                    <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+                        {{ language.name }} - {{ language.code }}
+                    </option>
+                    {% endfor %}
+                    </select>
+                    <input type="submit" value="set">
+                    </form>
+                </li> <!-- Переход на страницу с выбором языка -->
+                <a class="navbar-brand" href="/admin">{% trans "Админка" %}</a>
+                <a class="navbar-brand" href="/accounts/login">{% trans "Вход" %}</a>
+                <a class="navbar-brand" href="/accounts/signup">{% trans "Регистрация" %}</a>
+                <a class="navbar-brand" href="/accounts/logout">{% trans "Выход" %}</a>
 
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
+                    {% trans "Menu" %}
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="/about">Информация</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/contacts">Титульник</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/posts">Все публикации</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/posts/search">Поиск публикаций</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/posts/news/create">Создать новость</a></li>
-                        <li class-="nav-item"><a class="nav-link" href="/posts/article/create">Создать статью</a></li>
+
+                        <!--<li class="nav-item"><a class="nav-link" href="/about">Информация</a></li>-->
+                        <li class="nav-item"><a class="nav-link" href="/contacts">{% trans "Титульник" %}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/posts">{% trans "Все публикации" %}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/posts/search">{% trans "Поиск публикаций" %}</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/posts/news/create">{% trans "Создать новость" %}</a></li>
+                        <li class-="nav-item"><a class="nav-link" href="/posts/article/create">{% trans "Создать статью" %}</a></li>
                     </ul>
                 </div>
             </div>
@@ -51,8 +71,8 @@
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
                         <h1 class="mx-auto my-0 text-uppercase">{% block title %}{% endblock title %}</h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Это мой первый проект на Django, дальше будет лучше! </h2>
-                        <a class="btn btn-primary" href="#about">Начнем</a>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5">{% trans "Это мой первый проект на Django, дальше будет лучше!" %} </h2>
+                        <a class="btn btn-primary" href="#about">{% trans "Начнем" %}</a>
                     </div>
                 </div>
             </div>
@@ -89,7 +109,7 @@
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-md-10 col-lg-8 mx-auto text-center">
                         <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                        <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
+                        <h2 class="text-white mb-5">{% trans "Подпишитесь, чтобы получать обновления!" %}</h2>
                         <!-- * * * * * * * * * * * * * * *-->
                         <!-- * * SB Forms Contact Form * *-->
                         <!-- * * * * * * * * * * * * * * *-->
@@ -100,19 +120,19 @@
                         <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
                             <!-- Email address input-->
                             <div class="row input-group-newsletter">
-                                <div class="col"><input class="form-control" id="emailAddress" type="email" placeholder="Enter email address..." aria-label="Enter email address..." data-sb-validations="required,email" /></div>
-                                <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit">Notify Me!</button></div>
+                                <div class="col"><input class="form-control" id="emailAddress" type="email" placeholder="{% trans 'Введите ваш email...' %}" aria-label="{% trans 'Введите ваш email...' %}" data-sb-validations="required,email"> </div>
+                                <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit"> {% trans "Получать уведомления!" %} </button></div>
                             </div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is required.</div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.</div>
+                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">{% trans "Данный email уже зарегистрирован." %}</div>
+                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">{% trans "Неверный email" %}.</div>
                             <!-- Submit success message-->
                             <!---->
                             <!-- This is what your users will see when the form-->
                             <!-- has successfully submitted-->
                             <div class="d-none" id="submitSuccessMessage">
                                 <div class="text-center mb-3 mt-2 text-white">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
+                                    <div class="fw-bolder">{% trans "Успешно!" %}</div>
+                                    {% trans "Для активации формы, зарегистрируйтесь на" %}
                                     <br />
                                     <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                                 </div>
@@ -121,7 +141,7 @@
                             <!---->
                             <!-- This is what your users will see when there is-->
                             <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3 mt-2">Error sending message!</div></div>
+                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3 mt-2">{% trans "Ошибка при отправке письма!" %}</div></div>
                         </form>
                     </div>
                 </div>
@@ -135,7 +155,7 @@
                         <div class="card py-4 h-100">
                             <div class="card-body text-center">
                                 <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Address</h4>
+                                <h4 class="text-uppercase m-0">{% trans "Адрес" %}</h4>
                                 <hr class="my-4 mx-auto" />
                                 <div class="small text-black-50">4923 Market Street, Orlando FL</div>
                             </div>
@@ -155,7 +175,7 @@
                         <div class="card py-4 h-100">
                             <div class="card-body text-center">
                                 <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Phone</h4>
+                                <h4 class="text-uppercase m-0">{% trans "Телефон" %}</h4>
                                 <hr class="my-4 mx-auto" />
                                 <div class="small text-black-50">+1 (555) 902-8832</div>
                             </div>

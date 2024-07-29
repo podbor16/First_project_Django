@@ -1,4 +1,7 @@
 from datetime import datetime
+
+from django.http import HttpResponse
+from django.views import View
 # Импортируем класс, который говорит нам о том,
 # что в этом представлении мы будем выводить список объектов из БД
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
@@ -14,9 +17,25 @@ from django.db.models import Exists, OuterRef
 from django.core.cache import cache
 
 
-from .models import Post, Category, Subscriber
+from .models import Post, Category, Subscriber, MyModel
 from .filters import PostFilter
 from .forms import NewsForm, ArticleForm
+
+# импортируем функцию для перевода
+from django.utils.translation import gettext as _
+
+
+# Функция для перевода только одной строки
+class Index(View):
+    def get(self, request):
+        # . Translators: This message appears on the home page only
+        models = MyModel.objects.all()
+
+        context = {
+            'models': models,
+        }
+
+        return HttpResponse(render(request, 'index.html', context))
 
 
 @login_required
@@ -43,22 +62,6 @@ class PostsList(ListView):
         queryset = super().get_queryset()
         self.filterset = PostFilter(self.request.GET, queryset)
         return self.filterset.qs
-
-    # Метод get_context_data позволяет нам изменить набор данных,
-    # который будет передан в шаблон.
-    def get_context_data(self, **kwargs):
-        # С помощью super() мы обращаемся к родительским классам
-        # и вызываем у них метод get_context_data с теми же аргументами,
-        # что и были переданы нам.
-        # В ответе мы должны получить словарь.
-        context = super().get_context_data(**kwargs)
-        # К словарю добавим текущую дату в ключ 'time_now'.
-        context['time_now'] = datetime.utcnow()
-        # Добавим ещё одну пустую переменную,
-        # чтобы на её примере рассмотреть работу ещё одного фильтра.
-        context['next_sale'] = "Распродажа в среду"
-        context['filterset'] = self.filterset
-        return context
 
 
 class PostsSearch(FilterView):
@@ -87,7 +90,7 @@ class NewsCreate(PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form):
         news = form.save(commit=False)
-        news.post_type = 'news'
+        news.post_type = _('news')
         return super().form_valid(form)
 
 
@@ -99,7 +102,7 @@ class ArticleCreate(PermissionRequiredMixin, CreateView):
 
     def form_valid(self, form):
         article = form.save(commit=False)
-        article.post_type = 'article'
+        article.post_type = _('article')
         return super().form_valid(form)
 
 

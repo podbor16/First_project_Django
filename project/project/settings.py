@@ -42,6 +42,8 @@ LOGOUT_REDIRECT_URL = '/posts'
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',  # обязательно впишите его перед админом
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,6 +70,7 @@ SITE_URL = 'http://127.0.0.1:8000'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -141,11 +144,20 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGES = [
+    ('ru', 'Russian'),
+    ('en-us', 'English'),
+]
+
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
 
 USE_TZ = False
 
@@ -221,7 +233,7 @@ class DebugFalseFilter(logging.Filter):
     def filter(self, record):
         return not DEBUG
 
-
+"""
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -253,7 +265,7 @@ LOGGING = {
         'debug_true': {
             '()': DebugTrueFilter,
         },
-        'require_debug_false': {
+        'debug_false': {
             '()': DebugFalseFilter,
         }
     },
@@ -348,3 +360,4 @@ class ConsoleErrorHandler(logging.StreamHandler):
 
 
 LOGGING['handlers']['console_error']['class'] = 'project.settings.ConsoleErrorHandler'
+"""

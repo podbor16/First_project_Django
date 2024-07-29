@@ -1,17 +1,23 @@
 {% extends 'flatpages/default.html' %}
 
+{% load i18n %}
+
 {% block title %}
-{{ flatpage.title }}
+{% trans "Титульник" %}
 {% endblock title %}
 
 {% block content %}
-    <h3>Курсовая работа</h3><br>
-    <h1>WEB-ПРИЛОЖЕНИЕ "НОВОСТНОЙ ПОРТАЛ" НА ОСНОВЕ ФРЕЙМВОРКА DJANGO НА ЯЗЫКЕ PYTHON</h1>
+    <h3>{% trans "Курсовая работа" %}</h3><br>
+    <h1>{% blocktrans %} WEB-ПРИЛОЖЕНИЕ {% endblocktrans%}
+        {% blocktrans %} "НОВОСТНОЙ ПОРТАЛ" {% endblocktrans %}
+        {% blocktrans %} "НА ОСНОВЕ ФРЕЙМВОРКА DJANGO НА ЯЗЫКЕ PYTHON {% endblocktrans %}</h1>
     <hr>
     <hr>
     <p>
+        {% blocktrans %}
         Выполнили: М.А. Подборский и Д.О. Третьяков, гр. КИ22-003б<br>
         Руководитель: кандидат технических наук, доцент А.А. Даничев <br><br><br><br><br>
         Красноярск 2024
+        {% endblocktrans %}
     </p>
 {% endblock content %}

@@ -31,3 +31,4 @@ python-dateutil~=2.8.2
 colorama~=0.4.6
 wcwidth~=0.2.13
 prompt_toolkit~=3.0.45
+modeltranslation~=0.25

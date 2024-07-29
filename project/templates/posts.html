@@ -1,25 +1,25 @@
 <!--  наследуемся от шаблона default.html, который мы создавали для flatpages -->
 {% extends 'flatpages/default.html' %}
 
+{% load i18n %}
+
 {% load news_custom_filters %}
 {% load news_custom_tags %}
 
 <!-- Название у нас будет products -->
 {% block title %}
-Публикации
+{% trans "Публикации" %}
 {% endblock title %}
 
 <!-- В контенте на странице мы выводим все товары -->
 {% block content %}
-    <h1>Все публикации</h1>
+    <h1>{% trans "Все публикации" %}</h1>
     <!-- Используем переданную из представления переменную time_now
     и применяем к ней фильтр date. По назначению этот фильтр очень похож
     метод strftime у объекта datetime в Python — вывод времени
     в указанном формате. -->
     <h3>{{ time_now|date:'M d Y' }}</h3>
-    <!-- Если в переменной next_sale будет None,
-    то выведется указанный в фильтре текст -->
-    <h3> {{ next_sale|default_if_none:"Чуть позже сообщим о распродаже!" }} </h3>
+        <!--<h3>{{ next_sale|default_if_none:_("Чуть позже сообщим о распродаже!") }} </h3>-->
 
     {# Добавляем форму, которая объединяет набор полей, которые будут отправляться в запросе #}
    <form action="" method="get">
@@ -32,22 +32,22 @@
 
     {# Теперь будем проверять не request.user.is_authenticated, а конкретные права #}
     {% if perms.news.add_post %}
-        <a href="{% url 'news_create' %}">Добавить новость</a>
-        <a href="{% url 'article_create' %}">Добавить статью</a>
+        <a href="{% url 'news_create' %}">{% trans "Добавить новость" %}</a>
+        <a href="{% url 'article_create' %}">{% trans "Добавить статью" %}</a>
     {% endif %}
     <!-- Выводим товары, только если они есть с помощью тега if -->
     {% if news %}
         <table>
            <tr>
-               <td>Заголовок</td>
-               <td>Дата публикации</td>
-               <td>Начало новости</td>
-               <td>Подробнее</td>
-               <td>Категория</td>
+               <td>{% trans "Заголовок" %}</td>
+               <td>{% trans "Дата публикации" %}</td>
+               <td>{% trans "Начало новости" %}</td>
+               <td>{% trans "Подробнее" %}</td>
+               <td>{% trans "Категория" %}</td>
 
                {# Условие получается составным. #}
                {% if perms.news.change_post or perms.news.delete_post %}
-               <td>Действия</td>
+               <td>{% trans "Действия" %}</td>
                {% endif %}
            </tr>
            {% for new in news %}
@@ -64,18 +64,18 @@
                     {% if perms.news.change_post %}
                         {% if user.id == new.author.id %}
                             {% if new.post_type == 'news' %}
-                                <a href="{% url 'news_update' pk=new.id %}">Изменить новость</a>
+                                <a href="{% url 'news_update' pk=new.id %}">{% trans "Изменить новость" %}</a>
                             {% elif new.post_type == 'article' %}
-                                <a href="{% url 'article_update' pk=new.id %}">Изменить статью</a>
+                                <a href="{% url 'article_update' pk=new.id %}">{% trans "Изменить статью" %}</a>
                             {% endif %}
                         {% endif %}
                     {% endif %}
                     {% if perms.news.delete_post %}
                         {% if user.id == new.author.id %}
                             {% if new.post_type == 'news' %}
-                                <a href="{% url 'news_delete' pk=new.id %}">Удалить новость</a>
+                                <a href="{% url 'news_delete' pk=new.id %}">{% trans "Удалить новость" %}</a>
                             {% elif new.post_type == 'article' %}
-                                <a href="{% url 'news_delete' pk=new.id %}">Удалить статью</a>
+                                <a href="{% url 'news_delete' pk=new.id %}">{% trans "Удалить статью" %}</a>
                             {% endif %}
                         {% endif %}
                     {% endif %}
@@ -85,7 +85,7 @@
        </table>
     <!-- Если товаров нет, говорим, что товаров нет ;) -->
     {% else %}
-        <h2>Новостей нет</h2>
+        <h2>{% trans "Новостей нет" %}</h2>
     {% endif %}
 
        {# Добавляем пагинацию на страницу #}
