@@ -12,12 +12,20 @@ Class-based views
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
 Including another URLconf
     1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls')
 """
 from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponse
+from django.views.generic import TemplateView
+from rest_framework import routers
+from education import views
 
+
+router = routers.DefaultRouter()
+router.register(r'schools', views.SchoolViewset)
+router.register(r'classes', views.SClassViewset)
+router.register(r'students', views.StudentViewest)
 
 urlpatterns = [
     path('', include('news.urls')),
@@ -25,4 +33,9 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('pages/', include('django.contrib.flatpages.urls')),
     path('posts/', include('news.urls')),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('swagger-ui/', TemplateView.as_view(
+        template_name='swagger-ui.html',
+        extra_context={'schema_url': 'openapi-schema'},
+    ), name='swagger-ui'),
 ]
