@@ -62,6 +62,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.yandex',
 
     'django_apscheduler',
+
+    'education',
+    'rest_framework'
 ]
 
 SITE_ID = 1
@@ -79,6 +82,7 @@ MIDDLEWARE = [
 
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 
+    'basic.middlewares.TimezoneMiddleware'
     # Add the account middleware:
     #'allauth.account.middleware.AccountMiddleware',
 ]
@@ -151,7 +155,6 @@ LANGUAGES = [
 
 LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -159,7 +162,8 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')
 ]
 
-USE_TZ = False
+USE_TZ = True
+TIME_ZONE = 'UTC'
 
 
 # Static files (CSS, JavaScript, Images)

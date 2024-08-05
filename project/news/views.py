@@ -1,5 +1,6 @@
 from datetime import datetime
 
+import pytz
 from django.http import HttpResponse
 from django.views import View
 # Импортируем класс, который говорит нам о том,
@@ -23,6 +24,9 @@ from .forms import NewsForm, ArticleForm
 
 # импортируем функцию для перевода
 from django.utils.translation import gettext as _
+from django.utils import timezone
+
+from django.shortcuts import redirect
 
 
 # Функция для перевода только одной строки
@@ -33,9 +37,18 @@ class Index(View):
 
         context = {
             'models': models,
+            'current_time': timezone.localtime(timezone.now()),
+            # Добавляем в контекст все доступные часовые пояса
+            'timezones': pytz.common_timezones
         }
 
         return HttpResponse(render(request, 'index.html', context))
+
+    # По пост-запросу будем добавлять в сессию часовой пояс,
+    # который будет обрабатываться написанным нами ранее middleware
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('/hello')
 
 
 @login_required

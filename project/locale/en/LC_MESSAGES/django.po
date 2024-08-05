@@ -1,0 +1,502 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-29 10:18+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\fpages\admin.py:11
+msgid "Advanced options"
+msgstr ""
+
+#: .\news\models.py:29
+msgid "category name"
+msgstr ""
+
+#: .\news\models.py:41
+msgctxt "help text for MyModel model"
+msgid "This is the help text"
+msgstr ""
+
+#: .\news\views.py:31
+msgid "Hello world"
+msgstr ""
+
+#: .\news\views.py:108
+msgid "news"
+msgstr ""
+
+#: .\news\views.py:120
+msgid "article"
+msgstr ""
+
+#: .\templates\403.html:6
+msgid "Ошибка 403"
+msgstr "403 Error"
+
+#: .\templates\403.html:10
+msgid "Кажется, у Вас нет доступа к данной странице..."
+msgstr "It seems that you do not have access to this page..."
+
+#: .\templates\403.html:11
+#, fuzzy
+#| msgid "Зарегистрироваться"
+msgid "Вы можете зарегистрироваться через <a href="
+msgstr "Sign up"
+
+#: .\templates\account\base.html:16
+msgid "Messages:"
+msgstr ""
+
+#: .\templates\account\base.html:26
+msgid "Menu:"
+msgstr ""
+
+#: .\templates\account\base.html:29
+msgid "Change E-mail"
+msgstr ""
+
+#: .\templates\account\base.html:30 .\templates\account\logout.html:5
+msgid "Sign Out"
+msgstr ""
+
+#: .\templates\account\base.html:32 .\templates\account\login.html:6
+#: .\templates\account\login.html:55
+#: .\templates\account\socialaccount\login.html:4
+msgid "Sign In"
+msgstr ""
+
+#: .\templates\account\base.html:33
+#: .\templates\account\socialaccount\signup.html:8
+#: .\templates\account\socialaccount\signup.html:19
+msgid "Sign Up"
+msgstr ""
+
+#: .\templates\account\login.html:15 .\templates\flatpages\default.html:44
+msgid "Вход"
+msgstr "Sign in"
+
+#: .\templates\account\login.html:21
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "Войдите с помощью:\n"
+msgid ""
+"\n"
+"  Войдите с помощью:\n"
+"  "
+msgstr ""
+"\n"
+"Sign In Via:\n"
+
+#: .\templates\account\login.html:32
+msgid "Или введите email и пароль:"
+msgstr "Or input email and password"
+
+#: .\templates\account\login.html:37
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "Если у вас нет аккаунта, <a href=\"%(signup_url)s\">зарегистрируйтесь</"
+#| "a>\n"
+msgid ""
+"\n"
+"  Если у вас нет аккаунта, <a href=\"%(signup_url)s\">зарегистрируйтесь</a>\n"
+msgstr ""
+"\n"
+"If you don't have an account, <a href=\"%(signup_url)s\">sign in</a>\n"
+
+#: .\templates\account\login.html:44
+#, python-format
+msgid ""
+"If you have not created an account yet, then please\n"
+"<a href=\"%(signup_url)s\">sign up</a> first."
+msgstr ""
+
+#: .\templates\account\logout.html:12 .\templates\flatpages\default.html:46
+msgid "Выход"
+msgstr "Logout"
+
+#: .\templates\account\logout.html:14
+msgid "Вы уверены, что хотите выйти?"
+msgstr "Are you sure you want to logout"
+
+#: .\templates\account\logout.html:21
+msgid "Выйти"
+msgstr "Logout"
+
+#: .\templates\account\signup.html:5 .\templates\account\signup.html:12
+#: .\templates\flatpages\default.html:45
+msgid "Регистрация"
+msgstr "Sign up"
+
+#: .\templates\account\signup.html:14
+#, python-format
+msgid "Уже есть аккаунт? Тогда <a href=\"%(login_url)s\">войдите</a>."
+msgstr "Already have an account? Then  <a href=\"%(login_url)s\">sign in</a>"
+
+#: .\templates\account\signup.html:22
+msgid "Зарегистрироваться"
+msgstr "Sign up"
+
+#: .\templates\account\socialaccount\login.html:8
+#, python-format
+msgid "Connect %(provider)s"
+msgstr ""
+
+#: .\templates\account\socialaccount\login.html:10
+#, python-format
+msgid "You are about to connect a new third party account from %(provider)s."
+msgstr ""
+
+#: .\templates\account\socialaccount\login.html:12
+#, python-format
+msgid "Sign In Via %(provider)s"
+msgstr ""
+
+#: .\templates\account\socialaccount\login.html:14
+#, python-format
+msgid "You are about to sign in using a third party account from %(provider)s."
+msgstr ""
+
+#: .\templates\account\socialaccount\login.html:19
+msgid "Continue"
+msgstr ""
+
+#: .\templates\account\socialaccount\login_cancelled.html:5
+#: .\templates\account\socialaccount\login_cancelled.html:9
+msgid "Login Cancelled"
+msgstr ""
+
+#: .\templates\account\socialaccount\login_cancelled.html:13
+#, python-format
+msgid ""
+"You decided to cancel logging in to our site using one of your existing "
+"accounts. If this was a mistake, please proceed to <a href=\"%(login_url)s"
+"\">sign in</a>."
+msgstr ""
+
+#: .\templates\account\socialaccount\signup.html:5
+msgid "Signup"
+msgstr ""
+
+#: .\templates\account\socialaccount\signup.html:10
+#, python-format
+msgid ""
+"You are about to use your %(provider_name)s account to login to\n"
+"%(site_name)s. As a final step, please complete the following form:"
+msgstr ""
+
+#: .\templates\article_create.html:6
+#, fuzzy
+#| msgid "Добавить статью"
+msgid "Создание статьи"
+msgstr "Create article"
+
+#: .\templates\article_create.html:11 .\templates\article_edit.html:11
+msgid "Статья"
+msgstr "Article"
+
+#: .\templates\article_create.html:16 .\templates\article_edit.html:16
+#: .\templates\news_create.html:15 .\templates\news_edit.html:16
+msgid "Сохранить изменения"
+msgstr "Save changes"
+
+#: .\templates\article_delete.html:6
+#, fuzzy
+#| msgid "Удалить статью"
+msgid "Удаление Статьи"
+msgstr "Delete article"
+
+#: .\templates\article_delete.html:10
+#, fuzzy
+#| msgid "Удалить статью"
+msgid "Удаление статьи"
+msgstr "Delete article"
+
+#: .\templates\article_delete.html:14 .\templates\news_delete.html:14
+#, fuzzy
+#| msgid "Вы уверены, что хотите выйти?"
+msgid "Вы уверены, что хотите удалить"
+msgstr "Are you sure you want to logout"
+
+#: .\templates\article_delete.html:15
+#, fuzzy
+#| msgid "Удалить статью"
+msgid "Удалить"
+msgstr "Delete article"
+
+#: .\templates\article_edit.html:6
+#, fuzzy
+#| msgid "Редактирование новости"
+msgid "Редактирование статьи"
+msgstr "Edit article"
+
+#: .\templates\flatpages\contact_page.html:6
+#: .\templates\flatpages\default.html:56
+msgid "Титульник"
+msgstr "Title page"
+
+#: .\templates\flatpages\contact_page.html:10
+msgid "Курсовая работа"
+msgstr "Course paper"
+
+#: .\templates\flatpages\contact_page.html:11
+#, fuzzy
+#| msgid "WEB-ПРИЛОЖЕНИЕ "
+msgid " WEB-ПРИЛОЖЕНИЕ "
+msgstr " WEB-APP "
+
+#: .\templates\flatpages\contact_page.html:12
+msgid " \"НОВОСТНОЙ ПОРТАЛ\" "
+msgstr " \"NEWS PORTAL\" "
+
+#: .\templates\flatpages\contact_page.html:13
+msgid " \"НА ОСНОВЕ ФРЕЙМВОРКА DJANGO НА ЯЗЫКЕ PYTHON "
+msgstr "\"BASED ON THE DJANGO FRAMEWORK IN PYTHON "
+
+#: .\templates\flatpages\contact_page.html:17
+msgid ""
+"\n"
+"        Выполнили: М.А. Подборский и Д.О. Третьяков, гр. КИ22-003б<br>\n"
+"        Руководитель: кандидат технических наук, доцент А.А. Даничев "
+"<br><br><br><br><br>\n"
+"        Красноярск 2024\n"
+"        "
+msgstr ""
+"\n"
+"        Performed by: M.A. Podborskii and D.O. Tretyakov, gr. KI22-003b<br>\n"
+"        Supervisor: Candidate of Technical Sciences, Associate Professor A."
+"A. Danichev <br><br><br><br><br>\n"
+"        Krasnoyarsk 2024\n"
+"        "
+
+#: .\templates\flatpages\default.html:9
+msgid "Первый проект Django"
+msgstr "First project with Django"
+
+#: .\templates\flatpages\default.html:43
+msgid "Админка"
+msgstr "Admin panel"
+
+#: .\templates\flatpages\default.html:49
+msgid "Menu"
+msgstr ""
+
+#: .\templates\flatpages\default.html:57 .\templates\posts.html:16
+msgid "Все публикации"
+msgstr "All posts"
+
+#: .\templates\flatpages\default.html:58 .\templates\posts_search.html:11
+msgid "Поиск публикаций"
+msgstr "Search posts"
+
+#: .\templates\flatpages\default.html:59
+#, fuzzy
+#| msgid "Добавить новость"
+msgid "Создать новость"
+msgstr "Create news"
+
+#: .\templates\flatpages\default.html:60
+#, fuzzy
+#| msgid "Добавить статью"
+msgid "Создать статью"
+msgstr "Create article"
+
+#: .\templates\flatpages\default.html:73
+msgid "Это мой первый проект на Django, дальше будет лучше!"
+msgstr "This is my first project with Django, It will be better from now on"
+
+#: .\templates\flatpages\default.html:74
+msgid "Начнем"
+msgstr "Let's start"
+
+#: .\templates\flatpages\default.html:111
+msgid "Подпишитесь, чтобы получать обновления!"
+msgstr "Subscribe to receive updates!"
+
+#: .\templates\flatpages\default.html:122
+msgid "Введите ваш email..."
+msgstr "Enter your email"
+
+#: .\templates\flatpages\default.html:123
+#, fuzzy
+#| msgid "Сохранить изменения"
+msgid "Получать уведомления!"
+msgstr "Receive notifications!"
+
+#: .\templates\flatpages\default.html:125
+msgid "Данный email уже зарегистрирован."
+msgstr "This email has already required"
+
+#: .\templates\flatpages\default.html:126
+msgid "Неверный email"
+msgstr "Invalid email"
+
+#: .\templates\flatpages\default.html:133
+msgid "Успешно!"
+msgstr "Success!"
+
+#: .\templates\flatpages\default.html:134
+msgid "Для активации формы, зарегистрируйтесь на"
+msgstr "To activate the form, register on"
+
+#: .\templates\flatpages\default.html:143
+msgid "Ошибка при отправке письма!"
+msgstr "Error with sending email"
+
+#: .\templates\flatpages\default.html:157
+msgid "Адрес"
+msgstr "Address"
+
+#: .\templates\flatpages\default.html:177
+msgid "Телефон"
+msgstr "Phone"
+
+#: .\templates\index.html:6
+#, fuzzy
+#| msgid "Дата публикации"
+msgid "Тест локализации"
+msgstr "Locale test"
+
+#: .\templates\index.html:29
+msgid "Check out my new cool translation"
+msgstr ""
+
+#: .\templates\news_create.html:6
+#, fuzzy
+#| msgid "Редактирование новости"
+msgid "Создание новости"
+msgstr "Create news"
+
+#: .\templates\news_create.html:10 .\templates\news_edit.html:11
+msgid "Новость"
+msgstr "News"
+
+#: .\templates\news_delete.html:6 .\templates\news_delete.html:10
+#, fuzzy
+#| msgid "Удалить новость"
+msgid "Удаление новости"
+msgstr "Delete news"
+
+#: .\templates\news_edit.html:6
+msgid "Редактирование новости"
+msgstr "Edit news"
+
+#: .\templates\post.html:11
+msgid "Информация о новости"
+msgstr "Info about news"
+
+#: .\templates\post.html:25 .\templates\posts.html:42
+#: .\templates\posts_search.html:35
+msgid "Заголовок"
+msgstr "Title"
+
+#: .\templates\post.html:26 .\templates\posts.html:43
+#: .\templates\posts_search.html:36
+msgid "Дата публикации"
+msgstr "Date"
+
+#: .\templates\post.html:27
+msgid "Полный Текст"
+msgstr "Full Text"
+
+#: .\templates\post.html:28 .\templates\posts.html:46
+msgid "Категория"
+msgstr "Category"
+
+#: .\templates\post_subscriptions.html:6 .\templates\subscriptions.html:6
+msgid "Подписки"
+msgstr "Subscribes"
+
+#: .\templates\post_subscriptions.html:18
+#: .\templates\post_subscriptions.html:21 .\templates\subscriptions.html:18
+#: .\templates\subscriptions.html:21
+msgid "Подписаться"
+msgstr "Subscribe"
+
+#: .\templates\post_subscriptions.html:19
+#: .\templates\post_subscriptions.html:22 .\templates\subscriptions.html:19
+#: .\templates\subscriptions.html:22
+msgid "Отписаться"
+msgstr "Unsubscribe"
+
+#: .\templates\posts.html:11
+msgid "Публикации"
+msgstr "Post"
+
+#: .\templates\posts.html:22
+msgid "Чуть позже сообщим о распродаже!"
+msgstr ""
+
+#: .\templates\posts.html:35
+msgid "Добавить новость"
+msgstr "Create news"
+
+#: .\templates\posts.html:36
+msgid "Добавить статью"
+msgstr "Create article"
+
+#: .\templates\posts.html:44
+msgid "Начало новости"
+msgstr "News promo"
+
+#: .\templates\posts.html:45
+msgid "Подробнее"
+msgstr "More"
+
+#: .\templates\posts.html:50
+msgid "Действия"
+msgstr "Actions"
+
+#: .\templates\posts.html:67
+msgid "Изменить новость"
+msgstr "Edit news"
+
+#: .\templates\posts.html:69
+msgid "Изменить статью"
+msgstr "Edit article"
+
+#: .\templates\posts.html:76
+msgid "Удалить новость"
+msgstr "Delete news"
+
+#: .\templates\posts.html:78
+msgid "Удалить статью"
+msgstr "Delete article"
+
+#: .\templates\posts.html:88 .\templates\posts_search.html:49
+msgid "Новостей нет"
+msgstr "There is no news"
+
+#: .\templates\posts_search.html:16
+msgid "Все посты"
+msgstr "All posts"
+
+#: .\templates\posts_search.html:37
+msgid "Текст"
+msgstr "Text"
+
+#, fuzzy
+#~| msgid "Зарегистрироваться"
+#~ msgid ""
+#~ "Вы можете зарегистрироваться через <a href='http://127.0.0.1:8000/admin' "
+#~ "target='_blank'>панель администратора</a> и получить доступ к данной "
+#~ "странице или запросить доступ у администратора"
+#~ msgstr ""
+#~ "You can sign up with <a href='http://127.0.0.1:8000/admin' "
+#~ "target='_blank'> admin panel and access this page or request access from "
+#~ "the administrator"
