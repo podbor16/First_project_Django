@@ -19,13 +19,15 @@ from django.urls import path, include
 from django.http import HttpResponse
 from django.views.generic import TemplateView
 from rest_framework import routers
-from education import views
+#from education import views
+
+from froala_editor import views
 
 
 router = routers.DefaultRouter()
-router.register(r'schools', views.SchoolViewset)
-router.register(r'classes', views.SClassViewset)
-router.register(r'students', views.StudentViewest)
+#router.register(r'schools', views.SchoolViewset)
+#router.register(r'classes', views.SClassViewset)
+#router.register(r'students', views.StudentViewset)
 
 urlpatterns = [
     path('', include('news.urls')),
@@ -38,4 +40,6 @@ urlpatterns = [
         template_name='swagger-ui.html',
         extra_context={'schema_url': 'openapi-schema'},
     ), name='swagger-ui'),
+    path('', include(router.urls)),
+    path('froala-editor/', include('froala_editor.urls')),
 ]

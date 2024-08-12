@@ -54,7 +54,7 @@
            <tr>
                <td>{{ new.title|censor_words:"урюпа,фофанъ,фуфлыга,хабалъ" }}</td>
                <td>{{ new.created_at|date:'d M Y' }}</td>
-               <td>{{ new.text|truncatewords:5|censor_words:"урюпа,фофанъ,фуфлыга,хабалъ" }}</td>
+               <td>{{ new.{{ form.media }}text|truncatewords:5|censor_words:"урюпа,фофанъ,фуфлыга,хабалъ" }}</td>
                <td>
                    <a href="{% url 'post_detail' pk=new.id %}">>>></a>
                </td>
