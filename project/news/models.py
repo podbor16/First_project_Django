@@ -9,6 +9,8 @@ from django.utils.translation import gettext as _
 # импортируем «ленивый» геттекст с подсказкой
 from django.utils.translation import pgettext_lazy
 
+from froala_editor.fields import FroalaField
+
 
 # Create your models here.
 class Author(models.Model):
@@ -53,7 +55,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     category = models.ManyToManyField(Category, through='PostCategory')
     title = models.CharField(max_length=200)
-    text = models.TextField()
+    text = FroalaField()
     rating = models.IntegerField(default=0)
 
     def preview(self):

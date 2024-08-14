@@ -63,9 +63,19 @@ INSTALLED_APPS = [
 
     'django_apscheduler',
 
-    'education',
-    'rest_framework'
+    'rest_framework',
+    'froala_editor',
 ]
+
+REST_FRAMEWORK = {
+   'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+   'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+   'PAGE_SIZE': 10,
+   'DEFAULT_PERMISSION_CLASSES': [
+       'rest_framework.permissions.IsAuthenticated',
+   ]
+
+}
 
 SITE_ID = 1
 SITE_URL = 'http://127.0.0.1:8000'
